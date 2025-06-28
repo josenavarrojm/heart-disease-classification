@@ -1,4 +1,4 @@
-# 🫀 Heart Disease Classification using RandomForest & Logistic Classification
+# 🫀 Heart Disease Classification using RandomForest & LogisticRegression Classification
 
 This project builds a complete pipeline for predicting heart disease using supervised machine learning techniques. The dataset used comes from Kaggle and includes medical data of patients along with their heart disease diagnosis. The goal is to create a reproducible, well-tested project that includes data preprocessing, model training and evaluation, prediction capabilities, and performance visualization.
 
