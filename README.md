@@ -1,14 +1,14 @@
-
 # 🫀 Heart Disease Classification
 
-This project aims to build a classification model to predict the presence of heart disease using the `heart.csv` dataset. It involves preprocessing techniques, model training, and performance evaluation, all with a focus on reproducibility and production-readiness.
+This project builds a complete pipeline for predicting heart disease using supervised machine learning techniques. The dataset used comes from Kaggle and includes medical data of patients along with their heart disease diagnosis. The goal is to create a reproducible, well-tested project that includes data preprocessing, model training and evaluation, prediction capabilities, and performance visualization.
+
+---
 
 ## 📁 Project Structure
 
 ```
 heart-disease-classification/
-│
-├── data/                    # Raw and processed data
+├── data/                   # Raw and processed data
 │   ├── heart.csv
 │   ├── X_train.pkl
 │   ├── X_test.pkl
@@ -16,79 +16,140 @@ heart-disease-classification/
 │   ├── y_test.pkl
 │   └── scaler.pkl
 │
-├── models/                  # Trained models and evaluation metrics
+├── models/                 # Trained models and performance logs
 │   ├── LogisticRegression.pkl
 │   ├── RandomForest.pkl
-│   └── model_performance.csv
+│   ├── model_performance.csv
+│   ├── LogisticRegression_confusion_matrix.png
+│   ├── LogisticRegression_roc_curve.png
+│   ├── RandomForest_confusion_matrix.png
+│   └── RandomForest_roc_curve.png
 │
-├── .venv/                   # Python virtual environment
+├── plots/                  # Visualizations
+│   └── evaluation/         # Confusion matrices and ROC curves
 │
-├── data_prep.py            # Data preprocessing script
-├── train_model.py          # Model training and evaluation script
-├── requirements.txt        # Project dependencies
+├── notebooks/              # Exploratory analysis and results
+│   ├── EDA.ipynb
+│   └── Model_Results.ipynb
+│
+├── src/                    # Core scripts
+│   ├── data_prep.py        # Data download, split, and preprocessing
+│   ├── train_model.py      # Training and hyperparameter tuning
+│   ├── evaluate.py         # Model evaluation and metrics visualization
+│   ├── predict.py          # Inference with manual or CSV input
+│   └── eda.py              # (Optional) Data visualizations
+│
+├── tests/                  # Unit tests
+│   ├── test_data_prep.py
+│   ├── test_train_model.py
+│   ├── test_predict.py
+│   └── test_evaluate.py
+│
+├── .gitignore
+├── requirements.txt
+├── run_pipeline.sh         # Bash script to run the full pipeline
+├── setup.py                # Python project configuration
 └── README.md               # Project documentation
 ```
 
-## 📌 Objective
+---
 
-To develop a binary classification system that predicts whether a patient has heart disease based on clinical features.
+## 🚀 Quickstart
 
-## 🧪 Technologies Used
+```bash
+# 1. Create and activate virtual environment (Windows)
+python -m venv .venv
+.venv\Scripts\activate
 
-- Python 3.x
-- scikit-learn
-- pandas
-- matplotlib / seaborn
-- joblib / pickle
-- VSCode
+# 2. Install dependencies
+pip install -r requirements.txt
 
-## ⚙️ Usage Instructions
+# 3. Run the full pipeline
+bash run_pipeline.sh
 
-1. Clone the repository and create a virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/Scripts/activate  # On Windows
-   ```
+# 4. Run unit tests
+pytest tests/
+```
 
-2. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-3. Preprocess the data:
-   ```bash
-   python data_prep.py
-   ```
+## 📊 Features
 
-4. Train the models:
-   ```bash
-   python train_model.py
-   ```
+- Downloads and prepares data from Kaggle
+- Preprocesses features including one-hot encoding and scaling
+- Trains two models with hyperparameter tuning using GridSearchCV:
+  - Logistic Regression
+  - Random Forest
+- Saves models and scalers
+- Generates classification reports, confusion matrices, and ROC curves
+- Makes predictions via CLI or CSV input
+- Includes unit tests for key components
+- Includes two Jupyter notebooks for:
+  - Exploratory Data Analysis (EDA)
+  - Visualizing and comparing model performance
 
-## 📊 Results
+---
 
-The `train_model.py` script generates performance metrics such as accuracy, precision, recall, and F1-score, and saves them to `models/model_performance.csv`.
+## 📈 Results
 
-| Model              | Accuracy | Precision | Recall | F1-score |
-|-------------------|----------|-----------|--------|----------|
-| LogisticRegression|    ...   |    ...    |  ...   |   ...    |
-| RandomForest      |    ...   |    ...    |  ...   |   ...    |
+All models were trained and evaluated using a 80/20 train-test split. Both Logistic Regression and Random Forest achieved strong F1 scores:
 
-> These values are populated after running the training script.
+| Model              | Accuracy | F1 Score | AUC  |
+|-------------------|----------|----------|------|
+| LogisticRegression| 0.89     | 0.90     | 0.91 |
+| RandomForest      | 0.89     | 0.90     | 0.91 |
 
-## 📈 Future Work
+Performance graphs are saved in the `/plots/evaluation/` directory.
 
-- Comparison with other algorithms (XGBoost, SVM, etc.)
-- Visualizations (confusion matrix, ROC curve)
-- Hyperparameter tuning
-- Exporting to ONNX or joblib for deployment
+---
 
-## 🧑‍💻 Author
+## 🔍 Dataset
 
+Dataset: [Heart Failure Prediction](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)  
+Author: Federico Soriano  
+License: Open Data / Public Domain
+
+---
+
+## 🧪 Testing
+
+Run all tests with:
+```bash
+pytest tests/
+```
+
+All critical components including preprocessing, training, prediction, and evaluation are tested.
+
+---
+
+## ⚙️ Setup and Installation
+
+This repository includes a `setup.py` file for package-style installation. You can install it locally with:
+```bash
+pip install .
+```
+
+---
+
+## 📜 License
+
+MIT License. See `LICENSE` file for details.
+
+---
+
+## 👨‍💻 Author
+ 
 **José Junior Navarro Meneses**  
 Electronics Engineer | Data Scientist | Machine Learning Engineer  
-[LinkedIn](https://www.linkedin.com/) · [GitHub](https://github.com/)
+[LinkedIn](https://www.linkedin.com/in/jose-junior-navarro-meneses-913b62338/) · [GitHub](https://github.com/josenavarrojm)
+Email: josenavarrojmx@gmail.com
 
-## 📄 License
+---
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+## ✅ Future Work (Optional Enhancements)
+- Add XGBoost and SVM models
+- Add SHAP explanations for model interpretability
+- Deploy the model as a REST API (FastAPI)
+- Dockerize the entire pipeline
+
+
